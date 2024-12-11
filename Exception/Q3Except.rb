@@ -11,8 +11,8 @@ begin
   raise Errno::EACCES,"Custom:Permission Denied" unless File.readable?(file_path)
   raise Errno::EACCES,"Custom:Permission Denied" unless File.writable?(file_path)
 
-  File.open(file_path,"w") do |file|
-    puts file.write 
+  File.open(file_path,"r") do |file|
+    puts file.read
   end
 rescue Errno::ENOENT,Errno::EACCES => e
   puts "Error #{e.message}"
