@@ -4,8 +4,6 @@
 # Define two subclasses Circle and Rectangle. The Circle class should calculate its area using the formula πr^2, and the Rectangle class should calculate its area using width * height.
 # Create an instance of each subclass and calculate and display their areas.
 
-
-
 class Shape
   def area
     raise NotImplementedError, "Subclasses must implement the area method"
@@ -21,7 +19,6 @@ class Circle < Shape
     areaCircle = pi * @radius*2
     return areaCircle
   end
-
 end
 
 class Rectangle < Shape
