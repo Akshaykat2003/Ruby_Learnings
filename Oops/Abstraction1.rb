@@ -21,11 +21,13 @@ class Circle < Shape
   end
 end
 
+
 class Rectangle < Shape
   def initialize(width,height)
     @width=width
     @height=height
   end
+
 
   def area
     areaRectangle = @width * @height
