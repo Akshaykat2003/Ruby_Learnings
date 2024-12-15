@@ -1,7 +1,8 @@
 
 require_relative 'Calculator' 
 
-RSpec.describe Calculator do
+RSpec.describe Calculator 
+
   let(:calculator) { Calculator.new }
 
   describe '#add' do
