@@ -16,8 +16,6 @@ def insertionSort(arr)
   end
 end
 
-
-
 arr = [3,2,4,6,1,9]
 insertionSort(arr)
 puts arr.inspect
