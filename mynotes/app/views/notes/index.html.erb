@@ -2,15 +2,20 @@
 
 <% content_for :title, "Notes" %>
 
-<h1>Notes</h1>
+<div class="container">
+  <h1>Notes</h1>
 
-<div id="notes">
-  <% @notes.each do |note| %>
-    <%= render note %>
-    <p>
-      <%= link_to "Show this note", note %>
-    </p>
+  <%= turbo_frame_tag "notes" do %>
+    <div id="notes_list" class="notes-list">
+      <% @notes.each do |note| %>
+        <%= render note %>
+      <% end %>
+    </div>
   <% end %>
-</div>
 
-<%= link_to "New note", new_note_path %>
+  <div class="actions">
+    <%= link_to "New note", new_note_path, "data-turbo-frame": "note_form", class: "btn btn-primary" %>
+  </div>
+
+  <%= turbo_frame_tag "note_form" %>
+</div>

@@ -1,5 +1,5 @@
 class NotesController < ApplicationController
-  before_action :set_note, only: %i[ show edit update destroy ]
+  before_action :set_note, only: %i[show edit update destroy]
 
   # GET /notes or /notes.json
   def index
@@ -25,11 +25,13 @@ class NotesController < ApplicationController
 
     respond_to do |format|
       if @note.save
-        format.html { redirect_to @note, notice: "Note was successfully created." }
+        format.html { redirect_to notes_path, notice: "Note was successfully created." }
         format.json { render :show, status: :created, location: @note }
+        format.turbo_stream { render turbo_stream: turbo_stream.append("notes_list", partial: "notes/note", locals: { note: @note }) }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @note.errors, status: :unprocessable_entity }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("note_form", partial: "notes/form", locals: { note: @note }) }
       end
     end
   end
@@ -40,9 +42,11 @@ class NotesController < ApplicationController
       if @note.update(note_params)
         format.html { redirect_to @note, notice: "Note was successfully updated." }
         format.json { render :show, status: :ok, location: @note }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@note, partial: "notes/note", locals: { note: @note }) }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @note.errors, status: :unprocessable_entity }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("note_form", partial: "notes/form", locals: { note: @note }) }
       end
     end
   end
@@ -54,6 +58,7 @@ class NotesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to notes_path, status: :see_other, notice: "Note was successfully destroyed." }
       format.json { head :no_content }
+      format.turbo_stream { render turbo_stream: turbo_stream.remove(@note) }
     end
   end
 
@@ -65,6 +70,6 @@ class NotesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def note_params
-      params.expect(note: [ :title, :body ])
+      params.expect(note: [:title, :body])
     end
 end

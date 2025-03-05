@@ -1,12 +1,9 @@
-<div id="<%= dom_id note %>">
-  <p>
-    <strong>Title:</strong>
-    <%= note.title %>
-  </p>
-
-  <p>
-    <strong>Body:</strong>
-    <%= note.body %>
-  </p>
-
+<div id="<%= dom_id note %>" class="note-card">
+  <h2><%= note.title %></h2>
+  <p><%= note.body %></p>
+  <div class="note-actions">
+    <%= link_to "Show", note, "data-turbo-frame": "_top", class: "btn btn-secondary" %>
+    <%= link_to "Edit", edit_note_path(note), "data-turbo-frame": "note_form", class: "btn btn-secondary" %>
+    <%= link_to "Delete", note, method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger" %>
+  </div>
 </div>
