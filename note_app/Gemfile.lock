@@ -311,6 +311,9 @@ GEM
     turbo-rails (2.0.13)
       actionpack (>= 7.1.0)
       railties (>= 7.1.0)
+    turbolinks (5.2.1)
+      turbolinks-source (~> 5.2)
+    turbolinks-source (5.2.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     tzinfo-data (1.2025.1)
@@ -358,6 +361,7 @@ DEPENDENCIES
   stimulus-rails
   thruster
   turbo-rails
+  turbolinks (~> 5.2.0)
   tzinfo-data
   web-console
 
