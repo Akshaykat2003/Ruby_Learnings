@@ -100,4 +100,5 @@ development:
 #   cable:
 #     <<: *primary_production
 #     database: mynotes_production_cable
+
 #     migrations_paths: db/cable_migrate
